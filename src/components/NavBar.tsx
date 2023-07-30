@@ -22,7 +22,7 @@ export const NavBar: React.FC<NavBarProps> = ({
 	setCurrentPage,
 	currentPage,
 }) => {
-	const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
+	const [isLargerThan768] = useMediaQuery("(min-width: 840px)");
 	const [isDrawerOpen, setDrawerOpen] = useState(false);
 	const buttonContainerStyles = {
 		display: "inline-block",
@@ -57,7 +57,7 @@ export const NavBar: React.FC<NavBarProps> = ({
 	return (
 		<Flex
 			direction="row"
-			p={["16px", "16px", "32px"]}
+			p={["16px", "16px", "16px", "32px"]}
 			gap="8px"
 			justify="space-between"
 			alignSelf="end"
