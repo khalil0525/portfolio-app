@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
 
 interface Skill {
 	id: number;
@@ -64,11 +64,7 @@ const Skills: React.FC = () => {
 						justifyContent="center"
 						alignItems="center"
 					>
-						<img
-							src={skill.imageUrl}
-							alt={skill.name}
-							style={{ maxWidth: "100%", height: "auto" }}
-						/>
+						<Image src={skill.imageUrl} alt={skill.name} maxW="100%" h="auto" />
 					</Box>
 				))}
 			</Flex>
