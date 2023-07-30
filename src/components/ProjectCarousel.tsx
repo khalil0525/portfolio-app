@@ -80,12 +80,19 @@ const projectsData: Project[] = [
 
 const ProjectCarousel: React.FC = () => {
 	const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
-	const numProjectsToShow = 3;
-	const totalProjects = projectsData.length;
-	const projectsToShow = [];
-	const isMobile = useBreakpointValue({ base: true, md: false }); // Check if it's mobile screen size
-	const projectCardWidth = isMobile ? "100%" : `${100 / numProjectsToShow}%`;
 
+	const numProjectsToShowDesktop = 3;
+	const numProjectsToShowTablet = 1;
+	const totalProjects = projectsData.length;
+	const isMobile = useBreakpointValue({ base: true, md: false }); // Check if it's mobile screen size
+	const numProjectsToShow = isMobile
+		? numProjectsToShowTablet
+		: numProjectsToShowDesktop;
+	const projectCardWidth = isMobile
+		? "100%" // Full width for mobile
+		: `${100 / numProjectsToShowDesktop}%`; // Divide the width equally for desktop
+
+	const projectsToShow = [];
 	for (let i = 0; i < numProjectsToShow; i++) {
 		const projectIndex = (currentProjectIndex + i) % totalProjects;
 		projectsToShow.push(projectsData[projectIndex]);
@@ -100,6 +107,7 @@ const ProjectCarousel: React.FC = () => {
 			(prevIndex) => (prevIndex - 1 + totalProjects) % totalProjects
 		);
 	};
+
 	const chunkHashtags = (hashtags: string[], chunkSize: number) => {
 		const chunkedHashtags: string[][] = [];
 		for (let i = 0; i < hashtags.length; i += chunkSize) {
@@ -148,7 +156,7 @@ const ProjectCarousel: React.FC = () => {
 				{projectsToShow.map((project) => (
 					<Box
 						key={project.id}
-						flex={`1 0 ${projectCardWidth}`} // Divide the width equally for three projects or full width for mobile
+						flex={`1 0 ${projectCardWidth}`}
 						px={2}
 						display="flex"
 						flexDirection="column"
@@ -158,7 +166,7 @@ const ProjectCarousel: React.FC = () => {
 							fontSize="36px"
 							fontWeight="400"
 							mb={["4px", "4px", 4]}
-							ps={["0%", "0%", "30%"]}
+							ps={["0%", "0%", "0%", "30%"]}
 						>
 							{project.name}
 						</Text>
