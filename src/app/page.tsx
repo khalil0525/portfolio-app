@@ -1,14 +1,14 @@
 "use client";
 import Image from "next/image";
 import styles from "./page.module.css";
-import { StartScreen } from "@/components/StartScreen";
-import { AboutScreen } from "@/components/AboutScreen";
+import { StartScreen } from "@/components/pages/StartScreen";
+import { AboutScreen } from "@/components/pages/AboutScreen";
 import { Box, Flex } from "@chakra-ui/react";
 import { useState } from "react";
 import { NavBar } from "@/components/NavBar";
-import { ContactScreen } from "@/components/ContactScreen";
-import { ProjectScreen } from "@/components/ProjectScreen";
-import { SkillsScreen } from "@/components/SkillsScreen";
+import { ContactScreen } from "@/components/pages/ContactScreen";
+import { ProjectScreen } from "@/components/pages/ProjectScreen";
+import { SkillsScreen } from "@/components/pages/SkillsScreen";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import "./page-transitions.css"; // Create a CSS file for transitions
 
