@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Box, Flex, IconButton, Text } from "@chakra-ui/react";
+import {
+	Box,
+	Flex,
+	IconButton,
+	Text,
+	Image,
+	useBreakpointValue,
+} from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
 interface Project {
@@ -7,6 +14,7 @@ interface Project {
 	name: string;
 	description: string;
 	imageUrl: string; // Add the imageUrl property for project photo
+	hashTags: string[];
 }
 
 const projectsData: Project[] = [
@@ -14,43 +22,58 @@ const projectsData: Project[] = [
 		id: 1,
 		name: "Sound Garden",
 		description: "Music sharing app ",
-		imageUrl: "/img/soundgarden.jpg",
+		imageUrl: "/img/project/soundgarden.jpg",
+		hashTags: [
+			"CRUD",
+			"AUDIO",
+			"FIREBASE",
+			"REACT",
+			"JAVASCRIPT",
+			"HTML",
+			"CSS",
+		],
 	},
 	{
 		id: 2,
 		name: "Shoplocalforage",
 		description: "E-Commerce web application",
-		imageUrl: "/img/shopforage.jpg",
+		imageUrl: "/img/project/shopforage.jpg",
+		hashTags: ["CRUD", "TYPESCRIPT", "NEXT", "LOOPBACK", "SQL"],
 	},
 	{
 		id: 3,
 		name: "KeraRX",
 		description: "Shopify e-commerce application",
-		imageUrl: "/img/kerarx.jpg",
+		imageUrl: "/img/project/kerarx.jpg",
+		hashTags: ["SHOPIFY", "LIQUID", "JAVASCRIPT", "HTML", "CSS"],
 	},
 	{
 		id: 4,
-		name: "Project 3",
+		name: "Two Tones",
 		description: "This is the description for Project 3.",
-		imageUrl: "/img/shopforage.jpg",
+		imageUrl: "/img/project/twotones.jpg",
+		hashTags: ["CRUD", "AUDIO", "FIREBASE", "REACT"],
 	},
 	{
 		id: 5,
-		name: "Project 3",
+		name: "NudeU",
 		description: "This is the description for Project 3.",
-		imageUrl: "/img/shopforage.jpg",
+		imageUrl: "/img/project/nudeu.jpg",
+		hashTags: ["SHOPIFY", "LIQUID", "JAVASCRIPT", "HTML", "CSS"],
 	},
 	{
 		id: 6,
-		name: "Project 3",
-		description: "This is the description for Project 3.",
-		imageUrl: "/img/logo.png",
+		name: "Luminae",
+		description: "Joon Hair Care",
+		imageUrl: "/img/project/luminae.jpg",
+		hashTags: ["SHOPIFY", "LIQUID", "JAVASCRIPT", "HTML", "CSS"],
 	},
 	{
 		id: 7,
-		name: "Project 3",
+		name: "Joon HC",
 		description: "This is the description for Project 3.",
-		imageUrl: "/img/logo.png",
+		imageUrl: "/img/project/joon.jpg",
+		hashTags: ["SHOPIFY", "LIQUID", "JAVASCRIPT", "HTML", "CSS"],
 	},
 	// Add more projects as needed
 ];
@@ -60,6 +83,8 @@ const ProjectCarousel: React.FC = () => {
 	const numProjectsToShow = 3;
 	const totalProjects = projectsData.length;
 	const projectsToShow = [];
+	const isMobile = useBreakpointValue({ base: true, md: false }); // Check if it's mobile screen size
+	const projectCardWidth = isMobile ? "100%" : `${100 / numProjectsToShow}%`;
 
 	for (let i = 0; i < numProjectsToShow; i++) {
 		const projectIndex = (currentProjectIndex + i) % totalProjects;
@@ -75,6 +100,42 @@ const ProjectCarousel: React.FC = () => {
 			(prevIndex) => (prevIndex - 1 + totalProjects) % totalProjects
 		);
 	};
+	const chunkHashtags = (hashtags: string[], chunkSize: number) => {
+		const chunkedHashtags: string[][] = [];
+		for (let i = 0; i < hashtags.length; i += chunkSize) {
+			chunkedHashtags.push(hashtags.slice(i, i + chunkSize));
+		}
+		return chunkedHashtags;
+	};
+
+	// Helper function to render hashtags based on screen size
+	const renderHashtags = (hashtags: string[]) => {
+		if (window.innerWidth >= 768) {
+			// On desktop, render three hashtags per row
+			const chunkedHashtags = chunkHashtags(hashtags, 3);
+			return chunkedHashtags.map((hashtagGroup, index) => (
+				<Flex direction="row" gap={4} key={index}>
+					{hashtagGroup.map((hashtag) => (
+						<Text key={hashtag} fontSize="22px" fontWeight="300">
+							#{hashtag}
+						</Text>
+					))}
+				</Flex>
+			));
+		} else {
+			// On mobile, render two hashtags per row
+			const chunkedHashtags = chunkHashtags(hashtags, 2);
+			return chunkedHashtags.map((hashtagGroup, index) => (
+				<Flex direction="row" gap={4} key={index}>
+					{hashtagGroup.map((hashtag) => (
+						<Text key={hashtag} fontSize="22px" fontWeight="300">
+							#{hashtag}
+						</Text>
+					))}
+				</Flex>
+			));
+		}
+	};
 
 	return (
 		<Box p={4} maxWidth="100%" mx="auto">
@@ -87,23 +148,33 @@ const ProjectCarousel: React.FC = () => {
 				{projectsToShow.map((project) => (
 					<Box
 						key={project.id}
-						flex={`1 0 ${100 / numProjectsToShow}%`} // Divide the width equally for three projects
+						flex={`1 0 ${projectCardWidth}`} // Divide the width equally for three projects or full width for mobile
 						px={2}
 						display="flex"
 						flexDirection="column"
 						alignItems="center"
 					>
-						<img
-							src={project.imageUrl}
-							alt={project.name}
-							style={{ maxWidth: "50%", height: "auto", marginBottom: "8px" }}
-						/>
-						<Text fontSize="xl" fontWeight="bold" mb={4}>
+						<Text
+							fontSize="36px"
+							fontWeight="400"
+							mb={["4px", "4px", 4]}
+							ps={["0%", "0%", "30%"]}
+						>
 							{project.name}
 						</Text>
-						<Text textAlign="center" mb={4}>
-							{project.description}
-						</Text>
+						<Image
+							src={project.imageUrl}
+							alt={project.name}
+							maxH={isMobile ? "200px" : "50%"}
+							maxW={isMobile ? "100%" : "auto"}
+							objectFit="contain" // Adjust the object-fit property based on your image's aspect ratio
+							mb="8px"
+							borderRadius="10%"
+							padding="12px"
+						/>
+						<Flex direction="column" gap={6} alignItems="center">
+							{renderHashtags(project.hashTags)}
+						</Flex>
 					</Box>
 				))}
 			</Flex>

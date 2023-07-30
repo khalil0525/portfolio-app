@@ -1,27 +1,29 @@
 import React from "react";
 import ContactForm from "./ContactForm";
-import { Box, Flex, Heading } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 
 export const ContactScreen = () => {
 	return (
-		<Flex direction="column" align="start" justify="start" w="100%">
-			<Box
-				borderBottom="2px solid #392657"
-				pb="8px"
-				display="inline-block"
-				maxWidth="75%"
-				mb="36px"
-				mt="72px"
+		<Flex
+			direction="column"
+			align={["center", "center", "flex-start"]}
+			justify="start"
+			w="100%"
+			p="36px"
+		>
+			<Text
+				as="h1"
+				color="#C1CED9"
+				fontSize={["48px", "48px", "64px"]}
+				fontWeight="bold"
+				letterSpacing="-4px"
+				mb="72px"
 			>
-				<Heading
-					as="h1"
-					size="4xl"
-					noOfLines={1}
-					color="rgba(204, 139, 242, 1)"
-				>
-					GET IN TOUCH
-				</Heading>
-			</Box>
+				contact.
+				<Text as="span" color="#1CFF25">
+					me()
+				</Text>
+			</Text>
 			<ContactForm />
 		</Flex>
 	);

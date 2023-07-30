@@ -1,0 +1,35 @@
+/* scrollbar.css */
+
+/* For WebKit-based browsers (e.g., Chrome, Safari) */
+/* Apply the following styles to the container that has the scrollbar (in this case, the Stack component) */
+/* Replace .custom-scrollbar with the appropriate CSS class or selector for the Stack component */
+
+.custom-scrollbar {
+	scrollbar-width: thin; /* "thin" for a thin scrollbar, "auto" for the default scrollbar width */
+	scrollbar-color: #1cff25 #c1ced9; /* The scrollbar colors */
+}
+
+/* Define the scrollbar track (background) and thumb (handle) styles */
+.custom-scrollbar::-webkit-scrollbar {
+	width: 8px; /* Width of the scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+	background: #c1ced9; /* Color of the scrollbar track (background) */
+	border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+	background-color: #1cff25; /* Color of the scrollbar thumb (handle) */
+	border-radius: 4px; /* Rounded corners for the scrollbar thumb */
+}
+
+/* On desktop, set a fixed height for the text stack */
+@media screen and (min-width: 1024px) {
+	.custom-scrollbar {
+		height: calc(
+			60vh - 72px
+		); /* Subtracting the header height from the viewport height */
+		overflow-y: auto; /* Enable vertical scroll on desktop */
+	}
+}

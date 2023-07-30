@@ -15,15 +15,23 @@ import {
 
 interface NavBarProps {
 	setCurrentPage: React.Dispatch<React.SetStateAction<any>>;
+	currentPage: string;
 }
 
-export const NavBar: React.FC<NavBarProps> = ({ setCurrentPage }) => {
+export const NavBar: React.FC<NavBarProps> = ({
+	setCurrentPage,
+	currentPage,
+}) => {
 	const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
 	const [isDrawerOpen, setDrawerOpen] = useState(false);
 	const buttonContainerStyles = {
 		display: "inline-block",
-		textDecoration: "underline",
-		paddingBottom: "8px", // Adjust the value to control the space between the button text and the underline
+		paddingBottom: "10px", // Adjust the value to control the space between the button text and the underline
+	};
+	const selectedPageButtonStyles = {
+		borderBottom: "1px solid #1EF828",
+		lineHeight: "48px",
+		borderRadius: "0px",
 	};
 
 	const buttonStyles = {
@@ -31,10 +39,10 @@ export const NavBar: React.FC<NavBarProps> = ({ setCurrentPage }) => {
 		color: "#fff",
 		fontSize: isLargerThan768 ? "32px" : "20px",
 		textShadow: "0 4px 4px rgba(0, 0, 0, 0.25)",
-		fontWeight: "bold",
+		fontWeight: "500",
 		fontStretch: "normal",
 
-		letterSpacing: "3.2px",
+		letterSpacing: "-10%",
 	};
 
 	const toggleDrawer = () => {
@@ -49,43 +57,66 @@ export const NavBar: React.FC<NavBarProps> = ({ setCurrentPage }) => {
 	return (
 		<Flex
 			direction="row"
-			p="16px"
-			gap="32px"
+			p={["16px", "16px", "32px"]}
+			gap="8px"
 			justify="space-between"
-			alignSelf={isLargerThan768 ? "none" : "end"}
+			alignSelf="end"
+			position={isLargerThan768 ? "static" : "sticky"} // Set position to sticky on mobile
+			top={0} // Stick to the top of the viewport on mobile
+			zIndex={999} // Set a higher z-index to ensure it's above other elements
 		>
 			{/* Regular Navigation Buttons */}
 			{isLargerThan768 ? (
 				<>
 					<Button
-						style={buttonStyles}
+						style={
+							currentPage === "home"
+								? { ...buttonStyles, ...selectedPageButtonStyles }
+								: buttonStyles
+						}
 						onClick={() => handleNavItemClick("home")}
 					>
-						HOME
+						home
 					</Button>
 					<Button
-						style={buttonStyles}
+						style={
+							currentPage === "about"
+								? { ...buttonStyles, ...selectedPageButtonStyles }
+								: buttonStyles
+						}
 						onClick={() => handleNavItemClick("about")}
 					>
-						ABOUT
+						about
 					</Button>
 					<Button
-						style={buttonStyles}
+						style={
+							currentPage === "skills"
+								? { ...buttonStyles, ...selectedPageButtonStyles }
+								: buttonStyles
+						}
 						onClick={() => handleNavItemClick("skills")}
 					>
-						SKILLS
+						skills
 					</Button>
 					<Button
-						style={buttonStyles}
+						style={
+							currentPage === "projects"
+								? { ...buttonStyles, ...selectedPageButtonStyles }
+								: buttonStyles
+						}
 						onClick={() => handleNavItemClick("projects")}
 					>
-						MY PROJECTS
+						my projects
 					</Button>
 					<Button
-						style={buttonStyles}
+						style={
+							currentPage === "contact"
+								? { ...buttonStyles, ...selectedPageButtonStyles }
+								: buttonStyles
+						}
 						onClick={() => handleNavItemClick("contact")}
 					>
-						CONTACT
+						contact
 					</Button>
 				</>
 			) : (
@@ -108,34 +139,54 @@ export const NavBar: React.FC<NavBarProps> = ({ setCurrentPage }) => {
 						<DrawerBody>
 							<Stack spacing="8px">
 								<Button
-									style={buttonStyles}
+									style={
+										currentPage === "home"
+											? { ...buttonStyles, ...selectedPageButtonStyles }
+											: buttonStyles
+									}
 									onClick={() => handleNavItemClick("home")}
 								>
-									Home
+									home
 								</Button>
 								<Button
-									style={buttonStyles}
+									style={
+										currentPage === "about"
+											? { ...buttonStyles, ...selectedPageButtonStyles }
+											: buttonStyles
+									}
 									onClick={() => handleNavItemClick("about")}
 								>
-									About
+									about
 								</Button>
 								<Button
-									style={buttonStyles}
+									style={
+										currentPage === "skills"
+											? { ...buttonStyles, ...selectedPageButtonStyles }
+											: buttonStyles
+									}
 									onClick={() => handleNavItemClick("skills")}
 								>
-									Skills
+									skills
 								</Button>
 								<Button
-									style={buttonStyles}
+									style={
+										currentPage === "projects"
+											? { ...buttonStyles, ...selectedPageButtonStyles }
+											: buttonStyles
+									}
 									onClick={() => handleNavItemClick("projects")}
 								>
-									My Projects
+									my projects
 								</Button>
 								<Button
-									style={buttonStyles}
+									style={
+										currentPage === "contact"
+											? { ...buttonStyles, ...selectedPageButtonStyles }
+											: buttonStyles
+									}
 									onClick={() => handleNavItemClick("contact")}
 								>
-									Contact
+									contact
 								</Button>
 							</Stack>
 						</DrawerBody>

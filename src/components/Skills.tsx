@@ -50,9 +50,6 @@ const skillsData: Skill[] = [
 const Skills: React.FC = () => {
 	return (
 		<Flex direction="column" alignItems="center" width="100%" mx="auto">
-			<Text fontSize="2xl" fontWeight="bold" mb={4}>
-				My Skills
-			</Text>
 			<Flex flexWrap="wrap" justifyContent="center" alignItems="center">
 				{skillsData.map((skill) => (
 					<Box

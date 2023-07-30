@@ -55,47 +55,52 @@ const ContactForm: React.FC = () => {
 	};
 
 	return (
-		<Flex alignSelf="center">
-			<form onSubmit={handleSubmit}>
-				<FormControl mb={4}>
-					<FormLabel>Name</FormLabel>
-					<Input
-						type="text"
-						name="name"
-						value={formData.name}
-						onChange={handleChange}
-						placeholder="Your Name"
-						required
-					/>
-				</FormControl>
+		<Flex
+			alignSelf="center"
+			w={["100%", "100%", "50%"]}
+			justifySelf="center"
+			align="center"
+			justify="center"
+			direction="column"
+		>
+			<FormControl mb={4}>
+				<FormLabel>Name</FormLabel>
+				<Input
+					type="text"
+					name="name"
+					value={formData.name}
+					onChange={handleChange}
+					placeholder="Your Name"
+					required
+				/>
+			</FormControl>
 
-				<FormControl mb={4}>
-					<FormLabel>Email</FormLabel>
-					<Input
-						type="email"
-						name="email"
-						value={formData.email}
-						onChange={handleChange}
-						placeholder="Your Email"
-						required
-					/>
-				</FormControl>
+			<FormControl mb={4}>
+				<FormLabel>Email</FormLabel>
+				<Input
+					type="email"
+					name="email"
+					value={formData.email}
+					onChange={handleChange}
+					placeholder="Your Email"
+					required
+				/>
+			</FormControl>
 
-				<FormControl mb={4}>
-					<FormLabel>Message</FormLabel>
-					<Textarea
-						name="message"
-						value={formData.message}
-						onChange={handleChange}
-						placeholder="Your Message"
-						required
-					/>
-				</FormControl>
+			<FormControl mb={4}>
+				<FormLabel>Message</FormLabel>
+				<Textarea
+					name="message"
+					value={formData.message}
+					onChange={handleChange}
+					placeholder="Your Message"
+					required
+				/>
+			</FormControl>
 
-				<Button type="submit" colorScheme="blue">
-					Submit
-				</Button>
-			</form>
+			<Button type="submit" colorScheme="blue">
+				Submit
+			</Button>
 		</Flex>
 	);
 };

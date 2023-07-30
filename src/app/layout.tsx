@@ -1,11 +1,11 @@
 "use client";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Source_Code_Pro } from "next/font/google";
 import { CacheProvider } from "@chakra-ui/next-js";
 import { ChakraProvider } from "@chakra-ui/react";
-
-const inter = Inter({ subsets: ["latin"] });
+import "./scrollbar.css";
+const sourceCodePro = Source_Code_Pro({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
 	title: "Khalil Collins",
@@ -18,12 +18,14 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en">
-			<body className={inter.className}>
-				<CacheProvider>
-					<ChakraProvider>{children} </ChakraProvider>
-				</CacheProvider>
-			</body>
-		</html>
+		<>
+			<html lang="en">
+				<body className={sourceCodePro.className}>
+					<CacheProvider>
+						<ChakraProvider>{children} </ChakraProvider>
+					</CacheProvider>
+				</body>
+			</html>
+		</>
 	);
 }
