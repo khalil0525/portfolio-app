@@ -23,7 +23,7 @@ export const HomeScreen = () => {
 				as="h1"
 				size="3xl"
 				color="#C1CED9"
-				fontSize={["48px", "48px", "64px"]}
+				fontSize={["24px", "48px", "48px", "64px"]}
 				fontWeight="bold"
 				letterSpacing="8px"
 				mb="16px"

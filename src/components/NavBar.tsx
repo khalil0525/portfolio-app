@@ -37,7 +37,7 @@ export const NavBar: React.FC<NavBarProps> = ({
 	const buttonStyles = {
 		background: "none",
 		color: "#fff",
-		fontSize: isLargerThan768 ? "32px" : "20px",
+		fontSize: isLargerThan768 ? "18px" : "12px",
 		textShadow: "0 4px 4px rgba(0, 0, 0, 0.25)",
 		fontWeight: "500",
 		fontStretch: "normal",
@@ -57,7 +57,7 @@ export const NavBar: React.FC<NavBarProps> = ({
 	return (
 		<Flex
 			direction="row"
-			p={["16px", "16px", "16px", "32px"]}
+			p={["6px", "6px", "8px", "16px"]}
 			gap="8px"
 			justify="space-between"
 			alignSelf="end"
