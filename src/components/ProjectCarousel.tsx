@@ -6,6 +6,13 @@ import {
 	Text,
 	Image,
 	useBreakpointValue,
+	Modal,
+	ModalOverlay,
+	ModalContent,
+	ModalHeader,
+	ModalFooter,
+	ModalBody,
+	ModalCloseButton,
 } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
@@ -80,6 +87,8 @@ const projectsData: Project[] = [
 
 const ProjectCarousel: React.FC = () => {
 	const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
 	const numProjectsToShowDesktop = 3;
 	const numProjectsToShowTablet = 1;
@@ -98,6 +107,15 @@ const ProjectCarousel: React.FC = () => {
 		projectsToShow.push(projectsData[projectIndex]);
 	}
 
+	const handleOpenModal = (project: Project) => {
+		setSelectedProject(project);
+		setIsModalOpen(true);
+	};
+
+	const handleCloseModal = () => {
+		setIsModalOpen(false);
+		setSelectedProject(null);
+	};
 	const nextProject = () => {
 		setCurrentProjectIndex((prevIndex) => (prevIndex + 1) % totalProjects);
 	};
@@ -146,62 +164,98 @@ const ProjectCarousel: React.FC = () => {
 	};
 
 	return (
-		<Box p={4} maxWidth="100%" mx="auto">
-			<Flex
-				overflowX="hidden"
-				position="relative"
-				justifyContent="flex-start"
-				transition="left 0.3s ease"
-				color="#fff"
-			>
-				{projectsToShow.map((project) => (
-					<Box
-						key={project.id}
-						flex={`1 0 ${projectCardWidth}`}
-						px={2}
-						display="flex"
-						flexDirection="column"
-						alignItems="center"
-					>
-						<Text
-							fontSize="36px"
-							fontWeight="400"
-							mb={["4px", "4px", 4]}
-							ps={["0%", "0%", "0%", "30%"]}
+		<>
+			<Box p={4} maxWidth="100%" mx="auto">
+				<Flex
+					overflowX="hidden"
+					position="relative"
+					justifyContent="flex-start"
+					transition="left 0.3s ease"
+					color="#fff"
+				>
+					{projectsToShow.map((project) => (
+						<Box
+							key={project.id}
+							flex={`1 0 ${projectCardWidth}`}
+							px={2}
+							display="flex"
+							flexDirection="column"
+							alignItems="center"
+							cursor="pointer"
+							onClick={() => handleOpenModal(project)} // Add this onClick event
 						>
-							{project.name}
-						</Text>
-						<Image
-							src={project.imageUrl}
-							alt={project.name}
-							maxH={isMobile ? "200px" : "50%"}
-							maxW={isMobile ? "100%" : "auto"}
-							objectFit="contain" // Adjust the object-fit property based on your image's aspect ratio
-							mb="8px"
-							borderRadius="10%"
-							padding="12px"
-						/>
-						<Flex direction="column" gap={6} alignItems="center">
-							{renderHashtags(project.hashTags)}
-						</Flex>
-					</Box>
-				))}
-			</Flex>
-			<Flex justifyContent="center" alignItems="center" mt={1}>
-				<IconButton
-					icon={<ChevronLeftIcon />}
-					aria-label="Previous Project"
-					onClick={prevProject}
-					mr={2}
-				/>
-				<IconButton
-					icon={<ChevronRightIcon />}
-					aria-label="Next Project"
-					onClick={nextProject}
-					ml={2}
-				/>
-			</Flex>
-		</Box>
+							<Text
+								fontSize="36px"
+								fontWeight="400"
+								mb={["4px", "4px", 4]}
+								ps={["0%", "0%", "0%", "30%"]}
+							>
+								{project.name}
+							</Text>
+							<Image
+								src={project.imageUrl}
+								alt={project.name}
+								maxH={isMobile ? "200px" : "50%"}
+								maxW={isMobile ? "100%" : "auto"}
+								objectFit="contain" // Adjust the object-fit property based on your image's aspect ratio
+								mb="8px"
+								borderRadius="10%"
+								padding="12px"
+							/>
+							<Flex direction="column" gap={6} alignItems="center">
+								{renderHashtags(project.hashTags)}
+							</Flex>
+						</Box>
+					))}
+				</Flex>
+				<Flex justifyContent="center" alignItems="center" mt={1}>
+					<IconButton
+						icon={<ChevronLeftIcon />}
+						aria-label="Previous Project"
+						onClick={prevProject}
+						mr={2}
+					/>
+					<IconButton
+						icon={<ChevronRightIcon />}
+						aria-label="Next Project"
+						onClick={nextProject}
+						ml={2}
+					/>
+				</Flex>
+			</Box>
+			{selectedProject && (
+				<Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+					<ModalOverlay />
+					<ModalContent>
+						<ModalHeader>{selectedProject.name}</ModalHeader>
+						<ModalCloseButton />
+						<ModalBody>
+							<Text fontSize="16px" fontWeight="400" color="#000">
+								{selectedProject.name}
+							</Text>
+							<Text fontSize="16px" fontWeight="400" color="#000">
+								{selectedProject.description}
+							</Text>
+							<Image
+								src={selectedProject.imageUrl}
+								alt={selectedProject.name}
+								maxH="300px"
+								objectFit="contain"
+								borderRadius="10%"
+								mt={4}
+							/>
+							{/* Add other project details here */}
+						</ModalBody>
+						<ModalFooter>
+							{" "}
+							<Flex direction="column" gap={6} alignItems="center" color="#000">
+								{renderHashtags(selectedProject.hashTags)}
+							</Flex>
+						</ModalFooter>
+					</ModalContent>
+				</Modal>
+			)}
+		</>
 	);
 };
 
