@@ -11,6 +11,7 @@ import { ProjectScreen } from "@/components/pages/ProjectScreen";
 import { SkillsScreen } from "@/components/pages/SkillsScreen";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import "./page-transitions.css"; // Create a CSS file for transitions
+import { HomeScreen } from "@/components/pages/HomeScreen";
 
 export default function Home() {
 	const [currentPage, setCurrentPage] = useState<string>("start");
@@ -53,6 +54,7 @@ export default function Home() {
 						}}
 					>
 						<>
+							{currentPage === "home" && <HomeScreen />}
 							{currentPage === "start" && (
 								<StartScreen setCurrentPage={setCurrentPage} />
 							)}

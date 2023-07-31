@@ -1,7 +1,7 @@
 import React from "react";
-import ContactForm from "../ContactForm";
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
-import ProjectCarousel from "../ProjectCarousel";
+
+import { Flex, Text } from "@chakra-ui/react";
+
 import Skills from "../Skills";
 
 export const SkillsScreen = () => {

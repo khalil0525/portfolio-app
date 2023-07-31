@@ -1,62 +1,57 @@
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { Image } from "@chakra-ui/react";
+import styles from "./BreathingImage.module.css"; // Import the CSS file for the component
 
 const images = ["white", "red", "blue", "green", "final"];
-const animationSpeed = 3000;
-const breathingSpeed = 2000;
+const animationSpeed = 500;
+const breathingSpeed = 900;
 
 const BreathingImage: React.FC = () => {
 	const [currentImage, setCurrentImage] = useState(0);
 
 	useEffect(() => {
-		let animationTimeout: NodeJS.Timeout;
+		let animationInterval: NodeJS.Timeout;
+		let transitionInterval: NodeJS.Timeout;
 
-		// Start the breathing animation
+		const nextImage = () => {
+			setCurrentImage((prevImage) => (prevImage + 1) % images.length);
+		};
+
+		const startAnimation = () => {
+			animationInterval = setInterval(() => {
+				nextImage();
+			}, animationSpeed);
+		};
+
 		const startBreathing = () => {
-			setCurrentImage((prevImage) => (prevImage + 1) % images.length);
-			animationTimeout = setTimeout(startBreathing, breathingSpeed);
+			transitionInterval = setTimeout(() => {
+				startAnimation();
+			}, breathingSpeed);
 		};
 
-		// Start the transition to the next photo after the breathing animation
-		const startTransition = () => {
-			setCurrentImage((prevImage) => (prevImage + 1) % images.length);
-			if (currentImage !== images.length - 1) {
-				animationTimeout = setTimeout(startTransition, animationSpeed);
-			}
-		};
-
-		// Call the breathing function
 		startBreathing();
 
-		// Start the transition to the next photo after the breathing animation completes
-		setTimeout(() => {
-			clearTimeout(animationTimeout);
-			startTransition();
-		}, breathingSpeed);
-
-		// Clean up the timeout on component unmount
 		return () => {
-			clearTimeout(animationTimeout);
+			clearInterval(animationInterval);
+			clearTimeout(transitionInterval);
 		};
 	}, [currentImage]);
 
 	return (
-		<motion.div
-			animate={{ scale: [1, 1.2, 1] }}
-			transition={{ duration: 2, repeat: Infinity }}
-		>
-			<Image
-				src={`/img/logos/${images[currentImage]}-logo.png`}
-				alt={`Image ${images[currentImage]}`}
-				width={300}
-				height={300}
-				style={{
-					animation: `breathe ${breathingSpeed / 1000}s infinite`,
-					transformOrigin: "center",
-				}}
-			/>
-		</motion.div>
+		<div className={styles.container}>
+			{images.map((image, index) => (
+				<Image
+					key={index}
+					src={`/img/logos/${image}-logo.png`}
+					alt={`Image ${image}`}
+					width={300}
+					height={300}
+					className={`${styles.image} ${
+						currentImage === index ? styles.visible : ""
+					}`}
+				/>
+			))}
+		</div>
 	);
 };
 

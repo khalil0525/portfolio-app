@@ -1,0 +1,40 @@
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	width: 300px;
+	height: 300px;
+	overflow: hidden;
+}
+
+.image {
+	position: absolute;
+	opacity: 0;
+	transition: opacity 1s ease;
+}
+
+.visible {
+	opacity: 1;
+	animation: breathe 2s infinite; /* Replace the breathingSpeed with the actual duration */
+	transform-origin: center;
+}
+
+@keyframes breathe {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.2);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+.center-button > button {
+	justify-self: center !important;
+	align-self: center;
+	display: "flex";
+	align-items: center;
+	justify-content: center;
+}
