@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import {
 	Button,
 	Image,
@@ -44,11 +44,13 @@ export const HomeScreen = () => {
 					mb={["12px", "12px", 0]}
 					flexShrink={1}
 				>
-					<Image
-						src="/img/logo/green-logo.png"
-						w="100%"
-						h={["100%", "100%", "100%"]}
-					/>
+					<Suspense fallback={<div>Loading...</div>}>
+						<Image
+							src="/img/logo/green-logo.png"
+							w="100%"
+							h={["100%", "100%", "100%"]}
+						/>
+					</Suspense>
 				</Flex>
 			</Flex>
 		</Flex>
