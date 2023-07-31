@@ -1,71 +1,42 @@
 "use client";
-import Image from "next/image";
-import styles from "./page.module.css";
-import { StartScreen } from "@/components/pages/StartScreen";
-import { AboutScreen } from "@/components/pages/AboutScreen";
-import { Box, Flex } from "@chakra-ui/react";
-import { useState } from "react";
-import { NavBar } from "@/components/NavBar";
-import { ContactScreen } from "@/components/pages/ContactScreen";
-import { ProjectScreen } from "@/components/pages/ProjectScreen";
-import { SkillsScreen } from "@/components/pages/SkillsScreen";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
-import "./page-transitions.css"; // Create a CSS file for transitions
-import { HomeScreen } from "@/components/pages/HomeScreen";
+import React, { useState, useEffect } from "react";
+import { Button, Flex } from "@chakra-ui/react";
+import { motion } from "framer-motion";
+import BreathingImage from "@/components/BreathingImage"; // Make sure to provide the correct path to BreathingImage component
+import Link from "next/link";
+export default function Page() {
+	const [isButtonVisible, setIsButtonVisible] = useState(false);
 
-export default function Home() {
-	const [currentPage, setCurrentPage] = useState<string>("start");
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setIsButtonVisible(true);
+		}, 3000); // 3000 milliseconds delay (3 seconds)
+
+		return () => clearTimeout(timer);
+	}, []);
 
 	return (
-		<Box>
-			<Flex
-				h="100vh"
-				w="100vw"
-				direction="column"
-				align="center"
-				justify="flex-start" // Adjust this to "center" if you want to center content vertically
-				style={{
-					objectFit: "contain",
-					gap: "20px", // Add spacing between child components
-				}}
-				bgColor="#000"
+		<Flex direction="column" justify="center" align="center" h="100%" w="100%">
+			<BreathingImage />
+			<motion.div
+				initial={{ opacity: 0 }}
+				animate={{ opacity: isButtonVisible ? 1 : 0 }}
+				transition={{ duration: 2.5 }} // Adjust the duration for the desired fade-in time
+				className="center-button"
 			>
-				{!(currentPage === "start") && (
-					<NavBar setCurrentPage={setCurrentPage} currentPage={currentPage} />
-				)}
-				<TransitionGroup
-					component={null} // Disable the wrapping of the TransitionGroup with an extra DOM element
-					style={{
-						// Set the CSSTransition styles here
-						position: "absolute", // Take the CSSTransition out of the flex flow
-						width: "100%", // Take up the full width of the parent (Flex container)
-						height: "100%", // Take up the full height of the parent (Flex container)
-					}}
-				>
-					<CSSTransition
-						key={currentPage}
-						classNames="page"
-						timeout={{ enter: 300, exit: 300 }}
-						style={{
-							// Set the CSSTransition styles here
-							// Take the CSSTransition out of the flex flow
-							width: "100%", // Take up the full width of the parent (Flex container)
-							height: "100%", // Take up the full height of the parent (Flex container)
-						}}
+				<Link href="home">
+					<Button
+						borderRadius="100%"
+						padding="20px" // Adjust the padding as needed
+						mt="64px"
+						w="100px"
+						h="100px"
 					>
-						<>
-							{currentPage === "home" && <HomeScreen />}
-							{currentPage === "start" && (
-								<StartScreen setCurrentPage={setCurrentPage} />
-							)}
-							{currentPage === "about" && <AboutScreen />}
-							{currentPage === "skills" && <SkillsScreen />}
-							{currentPage === "projects" && <ProjectScreen />}
-							{currentPage === "contact" && <ContactScreen />}
-						</>
-					</CSSTransition>
-				</TransitionGroup>
-			</Flex>
-		</Box>
+						START
+					</Button>
+				</Link>
+			</motion.div>
+			{/* Other components or elements in the StartScreen */}
+		</Flex>
 	);
 }
