@@ -152,6 +152,7 @@ const ProjectCarousel: React.FC = () => {
 				position="relative"
 				justifyContent="flex-start"
 				transition="left 0.3s ease"
+				color="#fff"
 			>
 				{projectsToShow.map((project) => (
 					<Box
