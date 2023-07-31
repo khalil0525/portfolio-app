@@ -11,30 +11,23 @@ import {
 	DrawerHeader,
 	DrawerBody,
 	Stack,
+	Box,
 } from "@chakra-ui/react";
-
-interface NavBarProps {
-	setCurrentPage: React.Dispatch<React.SetStateAction<any>>;
-	currentPage: string;
-}
-
-export const NavBar: React.FC<NavBarProps> = ({
-	setCurrentPage,
-	currentPage,
-}) => {
+import Link from "next/link";
+export default function NavBar() {
 	const [isLargerThan768] = useMediaQuery("(min-width: 840px)");
 	const [isDrawerOpen, setDrawerOpen] = useState(false);
-	const buttonContainerStyles = {
+	const LinkContainerStyles = {
 		display: "inline-block",
-		paddingBottom: "10px", // Adjust the value to control the space between the button text and the underline
+		paddingBottom: "10px", // Adjust the value to control the space between the Link text and the underline
 	};
-	const selectedPageButtonStyles = {
+	const selectedPageLinkStyles = {
 		borderBottom: "1px solid #1EF828",
 		lineHeight: "48px",
 		borderRadius: "0px",
 	};
 
-	const buttonStyles = {
+	const LinkStyles = {
 		background: "none",
 		color: "#fff",
 		fontSize: isLargerThan768 ? "18px" : "12px",
@@ -50,7 +43,6 @@ export const NavBar: React.FC<NavBarProps> = ({
 	};
 
 	const handleNavItemClick = (page: string) => {
-		setCurrentPage(page);
 		setDrawerOpen(false); // Close the drawer on mobile when a link is clicked
 	};
 
@@ -65,64 +57,64 @@ export const NavBar: React.FC<NavBarProps> = ({
 			top={0} // Stick to the top of the viewport on mobile
 			zIndex={999} // Set a higher z-index to ensure it's above other elements
 		>
-			{/* Regular Navigation Buttons */}
+			{/* Regular Navigation Links */}
 			{isLargerThan768 ? (
 				<>
-					<Button
-						style={
-							currentPage === "home"
-								? { ...buttonStyles, ...selectedPageButtonStyles }
-								: buttonStyles
-						}
-						onClick={() => handleNavItemClick("home")}
+					<Link
+						href="/home"
+						// style={
+						// 	currentPage === "home"
+						// 		? { ...LinkStyles, ...selectedPageLinkStyles }
+						// 		: LinkStyles
+						// }
 					>
 						home
-					</Button>
-					<Button
-						style={
-							currentPage === "about"
-								? { ...buttonStyles, ...selectedPageButtonStyles }
-								: buttonStyles
-						}
-						onClick={() => handleNavItemClick("about")}
+					</Link>
+					<Link
+						href="/about"
+						// style={
+						// 	currentPage === "about"
+						// 		? { ...LinkStyles, ...selectedPageLinkStyles }
+						// 		: LinkStyles
+						// }
 					>
 						about
-					</Button>
-					<Button
-						style={
-							currentPage === "skills"
-								? { ...buttonStyles, ...selectedPageButtonStyles }
-								: buttonStyles
-						}
-						onClick={() => handleNavItemClick("skills")}
+					</Link>
+					<Link
+						href="/skills"
+						// style={
+						// 	currentPage === "skills"
+						// 		? { ...LinkStyles, ...selectedPageLinkStyles }
+						// 		: LinkStyles
+						// }
 					>
 						skills
-					</Button>
-					<Button
-						style={
-							currentPage === "projects"
-								? { ...buttonStyles, ...selectedPageButtonStyles }
-								: buttonStyles
-						}
-						onClick={() => handleNavItemClick("projects")}
+					</Link>
+					<Link
+						href="/projects"
+						// style={
+						// 	currentPage === "projects"
+						// 		? { ...LinkStyles, ...selectedPageLinkStyles }
+						// 		: LinkStyles
+						// }
 					>
 						my projects
-					</Button>
-					<Button
-						style={
-							currentPage === "contact"
-								? { ...buttonStyles, ...selectedPageButtonStyles }
-								: buttonStyles
-						}
-						onClick={() => handleNavItemClick("contact")}
+					</Link>
+					<Link
+						href="/contact"
+						// style={
+						// 	currentPage === "contact"
+						// 		? { ...LinkStyles, ...selectedPageLinkStyles }
+						// 		: LinkStyles
+						// }
 					>
 						contact
-					</Button>
+					</Link>
 				</>
 			) : (
 				<Flex direction="row" gap="16px" align={"end"}>
-					{/* Mobile Menu Button */}
-					<Button style={buttonStyles} onClick={toggleDrawer}>
+					{/* Mobile Menu Link */}
+					<Button style={LinkStyles} onClick={toggleDrawer}>
 						☰
 					</Button>
 				</Flex>
@@ -138,56 +130,56 @@ export const NavBar: React.FC<NavBarProps> = ({
 						<DrawerHeader>Menu</DrawerHeader>
 						<DrawerBody>
 							<Stack spacing="8px">
-								<Button
-									style={
-										currentPage === "home"
-											? { ...buttonStyles, ...selectedPageButtonStyles }
-											: buttonStyles
-									}
-									onClick={() => handleNavItemClick("home")}
+								<Link
+									href="/home"
+									// style={
+									// 	currentPage === "home"
+									// 		? { ...LinkStyles, ...selectedPageLinkStyles }
+									// 		: LinkStyles
+									// }
 								>
 									home
-								</Button>
-								<Button
-									style={
-										currentPage === "about"
-											? { ...buttonStyles, ...selectedPageButtonStyles }
-											: buttonStyles
-									}
-									onClick={() => handleNavItemClick("about")}
+								</Link>
+								<Link
+									href="/about"
+									// style={
+									// 	currentPage === "about"
+									// 		? { ...LinkStyles, ...selectedPageLinkStyles }
+									// 		: LinkStyles
+									// }
 								>
 									about
-								</Button>
-								<Button
-									style={
-										currentPage === "skills"
-											? { ...buttonStyles, ...selectedPageButtonStyles }
-											: buttonStyles
-									}
-									onClick={() => handleNavItemClick("skills")}
+								</Link>
+								<Link
+									href="/skills"
+									// style={
+									// 	currentPage === "skills"
+									// 		? { ...LinkStyles, ...selectedPageLinkStyles }
+									// 		: LinkStyles
+									// }
 								>
 									skills
-								</Button>
-								<Button
-									style={
-										currentPage === "projects"
-											? { ...buttonStyles, ...selectedPageButtonStyles }
-											: buttonStyles
-									}
-									onClick={() => handleNavItemClick("projects")}
+								</Link>
+								<Link
+									href="/projects"
+									// style={
+									// 	currentPage === "projects"
+									// 		? { ...LinkStyles, ...selectedPageLinkStyles }
+									// 		: LinkStyles
+									// }
 								>
 									my projects
-								</Button>
-								<Button
-									style={
-										currentPage === "contact"
-											? { ...buttonStyles, ...selectedPageButtonStyles }
-											: buttonStyles
-									}
-									onClick={() => handleNavItemClick("contact")}
+								</Link>
+								<Link
+									href="/contact"
+									// style={
+									// 	currentPage === "contact"
+									// 		? { ...LinkStyles, ...selectedPageLinkStyles }
+									// 		: LinkStyles
+									// }
 								>
 									contact
-								</Button>
+								</Link>
 							</Stack>
 						</DrawerBody>
 					</DrawerContent>
@@ -195,4 +187,4 @@ export const NavBar: React.FC<NavBarProps> = ({
 			</Drawer>
 		</Flex>
 	);
-};
+}
