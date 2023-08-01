@@ -45,6 +45,7 @@ export default function Page() {
 						direction={["column", "column", "column", "row"]}
 						w="100%"
 						justify={["unset", "unset", "unset", "space-evenly"]}
+						overflowY={["unset", "unset", "unset", "hidden"]}
 					>
 						<Flex
 							direction="column"
