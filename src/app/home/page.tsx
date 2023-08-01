@@ -60,7 +60,7 @@ export default function Page() {
 							letterSpacing="8px"
 							mb="16px"
 						>
-							Khalil
+							Khalil.
 							<span style={{ color: "#1CFF25" }}>Collins()</span>
 						</Text>
 					</animated.div>
