@@ -321,11 +321,18 @@ const ProjectCarousel: React.FC = () => {
 									className="custom-scrollbar"
 									padding="36px"
 								>
-									{selectedProject.description.split("\n").map((line) => (
-										<Text fontSize="14px" fontWeight="400" color="#000">
-											{line}{" "}
-										</Text>
-									))}
+									{selectedProject.description
+										.split("\n")
+										.map((line, index) => (
+											<Text
+												fontSize="14px"
+												fontWeight="400"
+												color="#000"
+												key={index + line}
+											>
+												{line}
+											</Text>
+										))}
 								</Stack>
 								{/* Add other project details here */}
 							</Flex>
