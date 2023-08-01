@@ -165,7 +165,6 @@ const ProjectCarousel: React.FC = () => {
 			return chunkedHashtags.map((hashtagGroup, index) => (
 				<Flex
 					direction="column"
-					gap={1}
 					key={index}
 					align="start"
 					justify="start"
@@ -246,7 +245,7 @@ const ProjectCarousel: React.FC = () => {
 							</div>
 							<Flex
 								direction="column"
-								gap={1}
+								gap={0}
 								alignItems="center"
 								pt={2}
 								h={["120px", "100px", "100px", "200px"]}

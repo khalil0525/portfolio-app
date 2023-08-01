@@ -136,7 +136,7 @@ a {
 @media screen and (max-width: 1025px) {
 	.image-container {
 		width: 100%;
-		height: 140px; /* Set the desired height for tablet and smaller screens */
+		height: 100px; /* Set the desired height for tablet and smaller screens */
 	}
 	.image-container::before {
 		width: 100%;
@@ -147,7 +147,7 @@ a {
 @media screen and (min-width: 1026px) {
 	.image-container {
 		width: 100%;
-		height: 100%; /* Set the desired height for desktop screens */
+		height: 250px; /* Set the desired height for desktop screens */
 	}
 	.image-container::before {
 		width: 100%;
