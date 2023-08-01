@@ -49,8 +49,8 @@ export default function NavBar() {
 	return (
 		<Flex
 			direction="row"
-			p={["6px", "6px", "8px", "16px"]}
-			gap="8px"
+			p={["6px", "6px", "36px", "36px"]}
+			gap={["6px", "6px", "36px", "36px"]}
 			justify="space-between"
 			alignSelf="end"
 			position={isLargerThan768 ? "static" : "sticky"} // Set position to sticky on mobile
