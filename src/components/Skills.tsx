@@ -90,17 +90,17 @@ const Skills: React.FC = () => {
 				{skillsData.map((skill) => (
 					<Box
 						key={skill.id}
-						p={6}
+						p={5}
 						m={2}
-						width="100px"
-						height="100px"
+						width="120px"
+						height="120px"
 						borderRadius="full"
 						bg="#fff"
 						display="flex"
 						justifyContent="center"
 						alignItems="center"
 					>
-						<Image src={skill.imageUrl} alt={skill.name} maxW="100%" h="auto" />
+						<Image src={skill.imageUrl} alt={skill.name} maxW="100%" h="100%" />
 					</Box>
 				))}
 			</Flex>
