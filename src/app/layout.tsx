@@ -76,10 +76,16 @@ export default function RootLayout({
 										>
 											<Flex
 												direction="column"
-												overflowY={["auto", "auto", "auto", "hidden"]}
+												overflowY={["auto", "auto", "auto", "auto"]}
 												w="100%"
 												h="100%"
-												p={["12px", "12px", "0px 36px", "24px 124px"]}
+												p={[
+													"12px",
+													"12px",
+													"0px 36px",
+													"6px 36px",
+													"6px 124px",
+												]}
 												align={
 													pathName === "/home"
 														? ["center", "center", "center", "center"]
@@ -91,7 +97,7 @@ export default function RootLayout({
 														as="h1"
 														size="3xl"
 														color="#C1CED9"
-														fontSize={["48px", "48px", "64px"]}
+														fontSize={["24px", "24px", "32px", "48px", "64px"]}
 														fontWeight="bold"
 														letterSpacing="-4px"
 														mb="16px"

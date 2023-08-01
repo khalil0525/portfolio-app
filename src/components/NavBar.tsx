@@ -55,7 +55,7 @@ export default function NavBar() {
 	return (
 		<Flex
 			direction="row"
-			p={["6px", "6px", "36px", "36px"]}
+			p={["6px", "6px", "16px", "24px", "36px"]}
 			gap={["6px", "6px", "36px", "36px"]}
 			justify="space-between"
 			alignSelf="end"

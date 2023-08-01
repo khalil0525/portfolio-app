@@ -161,11 +161,18 @@ const ProjectCarousel: React.FC = () => {
 	const renderHashtags = (hashtags: string[]) => {
 		if (window.innerWidth >= 768) {
 			// On desktop, render three hashtags per row
-			const chunkedHashtags = chunkHashtags(hashtags, 3);
+			const chunkedHashtags = chunkHashtags(hashtags, 1);
 			return chunkedHashtags.map((hashtagGroup, index) => (
-				<Flex direction="row" gap={4} key={index}>
+				<Flex
+					direction="column"
+					gap={1}
+					key={index}
+					align="start"
+					justify="start"
+					w="100%"
+				>
 					{hashtagGroup.map((hashtag) => (
-						<Text key={hashtag} fontSize="22px" fontWeight="300">
+						<Text key={hashtag} fontSize="16px" fontWeight="300">
 							#{hashtag}
 						</Text>
 					))}
@@ -173,11 +180,18 @@ const ProjectCarousel: React.FC = () => {
 			));
 		} else {
 			// On mobile, render two hashtags per row
-			const chunkedHashtags = chunkHashtags(hashtags, 2);
+			const chunkedHashtags = chunkHashtags(hashtags, 3);
 			return chunkedHashtags.map((hashtagGroup, index) => (
-				<Flex direction="row" gap={2} key={index}>
+				<Flex
+					direction="row"
+					gap={2}
+					key={index}
+					align="center"
+					justify="center"
+					w="100%"
+				>
 					{hashtagGroup.map((hashtag) => (
-						<Text key={hashtag} fontSize="22px" fontWeight="300">
+						<Text key={hashtag} fontSize="16px" fontWeight="300">
 							#{hashtag}
 						</Text>
 					))}
@@ -188,7 +202,7 @@ const ProjectCarousel: React.FC = () => {
 
 	return (
 		<>
-			<Box p={4} maxWidth="100%" mx="auto">
+			<Box p={2} maxWidth="100%" mx="auto">
 				<Flex
 					overflowX="auto"
 					position="relative"
@@ -196,6 +210,10 @@ const ProjectCarousel: React.FC = () => {
 					transition="left 0.3s ease"
 					color="#fff"
 					className="custom-scrollbar horizontal"
+					overflowY="hidden"
+					maxWidth="100%"
+					height="100%"
+					pb={[4, 4, 28, 4]}
 				>
 					{projectsData.map((project) => (
 						<Box
@@ -207,12 +225,13 @@ const ProjectCarousel: React.FC = () => {
 							alignItems="center"
 							cursor="pointer"
 							onClick={() => handleOpenModal(project)} // Add this onClick event
-							mb={[16, 16, 16, 12]}
+							h="100%"
+							w="100%"
 						>
 							<Text
-								fontSize="36px"
+								fontSize="26px"
 								fontWeight="400"
-								mb={["4px", "4px", 4]}
+								mb={["4px", "4px", 6]}
 								ps={["0%", "0%", "0%", "30%"]}
 							>
 								{project.name}
@@ -221,8 +240,6 @@ const ProjectCarousel: React.FC = () => {
 								<Image
 									src={project.imageUrl}
 									alt={project.name}
-									maxH={isMobile ? "200px" : "100%"}
-									maxW={isMobile ? "100%" : "100%"}
 									objectFit="fill" // Adjust the object-fit property based on your image's aspect ratio
 									borderRadius="300px"
 								/>
@@ -232,8 +249,9 @@ const ProjectCarousel: React.FC = () => {
 								gap={1}
 								alignItems="center"
 								pt={2}
-								pb={4}
-								h={["120px", "100px", "100px", "100px"]}
+								h={["120px", "100px", "100px", "200px"]}
+								w="100%"
+								pb={8}
 							>
 								{renderHashtags(project.hashTags)}
 							</Flex>

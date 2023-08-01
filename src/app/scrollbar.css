@@ -50,9 +50,13 @@
 
 /* On desktop, set a fixed height for the text stack */
 @media screen and (min-width: 1024px) {
-	.custom-scrollbar {
+	.custom-scrollbar.vertical {
 		height: calc(
 			60vh - 72px
 		); /* Subtracting the header height from the viewport height */
+	}
+
+	.custom-scrollbar.horizontal {
+		height: 100%; /* Subtracting the header height from the viewport height */
 	}
 }
