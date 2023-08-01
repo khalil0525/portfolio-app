@@ -90,7 +90,7 @@ const projectsData: Project[] = [
 		name: "Two Tones",
 		description: "Wordpress business website and booking site",
 		imageUrl: "/img/project/twotones.jpg",
-		hashTags: ["CRUD", "AUDIO", "FIREBASE", "REACT"],
+		hashTags: ["WORDPRESS", "HTML", "CSS", "PHP", "JAVSCRIPT"],
 		githubUrl: null,
 		appUrl: "https://twotonespianobar.com/",
 	},
@@ -125,7 +125,6 @@ const projectsData: Project[] = [
 ];
 
 const ProjectCarousel: React.FC = () => {
-	const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
@@ -140,12 +139,6 @@ const ProjectCarousel: React.FC = () => {
 		? "100%" // Full width for mobile
 		: `${100 / numProjectsToShowDesktop}%`; // Divide the width equally for desktop
 
-	const projectsToShow = [];
-	for (let i = 0; i < numProjectsToShow; i++) {
-		const projectIndex = (currentProjectIndex + i) % totalProjects;
-		projectsToShow.push(projectsData[projectIndex]);
-	}
-
 	const handleOpenModal = (project: Project) => {
 		setSelectedProject(project);
 		setIsModalOpen(true);
@@ -154,15 +147,6 @@ const ProjectCarousel: React.FC = () => {
 	const handleCloseModal = () => {
 		setIsModalOpen(false);
 		setSelectedProject(null);
-	};
-	const nextProject = () => {
-		setCurrentProjectIndex((prevIndex) => (prevIndex + 1) % totalProjects);
-	};
-
-	const prevProject = () => {
-		setCurrentProjectIndex(
-			(prevIndex) => (prevIndex - 1 + totalProjects) % totalProjects
-		);
 	};
 
 	const chunkHashtags = (hashtags: string[], chunkSize: number) => {
@@ -191,7 +175,7 @@ const ProjectCarousel: React.FC = () => {
 			// On mobile, render two hashtags per row
 			const chunkedHashtags = chunkHashtags(hashtags, 2);
 			return chunkedHashtags.map((hashtagGroup, index) => (
-				<Flex direction="row" gap={4} key={index}>
+				<Flex direction="row" gap={2} key={index}>
 					{hashtagGroup.map((hashtag) => (
 						<Text key={hashtag} fontSize="22px" fontWeight="300">
 							#{hashtag}
@@ -206,22 +190,24 @@ const ProjectCarousel: React.FC = () => {
 		<>
 			<Box p={4} maxWidth="100%" mx="auto">
 				<Flex
-					overflowX="hidden"
+					overflowX="auto"
 					position="relative"
 					justifyContent="flex-start"
 					transition="left 0.3s ease"
 					color="#fff"
+					className="custom-scrollbar horizontal"
 				>
-					{projectsToShow.map((project) => (
+					{projectsData.map((project) => (
 						<Box
 							key={project.id}
 							flex={`1 0 ${projectCardWidth}`}
-							px={2}
+							px={4}
 							display="flex"
 							flexDirection="column"
 							alignItems="center"
 							cursor="pointer"
 							onClick={() => handleOpenModal(project)} // Add this onClick event
+							mb={[16, 16, 16, 12]}
 						>
 							<Text
 								fontSize="36px"
@@ -231,35 +217,28 @@ const ProjectCarousel: React.FC = () => {
 							>
 								{project.name}
 							</Text>
-							<Image
-								src={project.imageUrl}
-								alt={project.name}
-								maxH={isMobile ? "200px" : "50%"}
-								maxW={isMobile ? "100%" : "auto"}
-								objectFit="contain" // Adjust the object-fit property based on your image's aspect ratio
-								mb="8px"
-								borderRadius="10%"
-								padding="12px"
-							/>
-							<Flex direction="column" gap={6} alignItems="center">
+							<div className="image-container" style={{ marginBottom: "12px" }}>
+								<Image
+									src={project.imageUrl}
+									alt={project.name}
+									maxH={isMobile ? "200px" : "100%"}
+									maxW={isMobile ? "100%" : "100%"}
+									objectFit="fill" // Adjust the object-fit property based on your image's aspect ratio
+									borderRadius="300px"
+								/>
+							</div>
+							<Flex
+								direction="column"
+								gap={1}
+								alignItems="center"
+								pt={2}
+								pb={4}
+								h={["120px", "100px", "100px", "100px"]}
+							>
 								{renderHashtags(project.hashTags)}
 							</Flex>
 						</Box>
 					))}
-				</Flex>
-				<Flex justifyContent="center" alignItems="center" mt={1}>
-					<IconButton
-						icon={<ChevronLeftIcon />}
-						aria-label="Previous Project"
-						onClick={prevProject}
-						mr={2}
-					/>
-					<IconButton
-						icon={<ChevronRightIcon />}
-						aria-label="Next Project"
-						onClick={nextProject}
-						ml={2}
-					/>
 				</Flex>
 			</Box>
 			{selectedProject && (
@@ -318,7 +297,7 @@ const ProjectCarousel: React.FC = () => {
 									justifySelf="end"
 									overflowY={["auto", "auto", "auto", "auto"]}
 									h={["25vh", "30vh", "30vh", "50%"]}
-									className="custom-scrollbar"
+									className="custom-scrollbar vertical"
 									padding="36px"
 								>
 									{selectedProject.description

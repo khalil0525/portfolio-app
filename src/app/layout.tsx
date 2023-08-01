@@ -79,7 +79,7 @@ export default function RootLayout({
 												overflowY={["auto", "auto", "auto", "hidden"]}
 												w="100%"
 												h="100%"
-												p={["12px", "12px", "0px 72px", "24px 124px"]}
+												p={["12px", "12px", "0px 36px", "24px 124px"]}
 												align={
 													pathName === "/home"
 														? ["center", "center", "center", "center"]

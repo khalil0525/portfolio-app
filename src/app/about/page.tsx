@@ -70,7 +70,7 @@ export default function Page() {
 							justifySelf="end"
 							overflowY={["auto", "auto", "auto", "auto"]}
 							h={["25vh", "30vh", "30vh", "50%"]}
-							className="custom-scrollbar"
+							className="custom-scrollbar vertical"
 							padding="36px"
 						>
 							<motion.div
