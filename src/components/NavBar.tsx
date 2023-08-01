@@ -14,7 +14,12 @@ import {
 	Box,
 } from "@chakra-ui/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 export default function NavBar() {
+	const pathName = usePathname();
+	console.log(pathName);
+	const isStartPage = pathName === "/";
+	let page = pathName.slice(1);
 	const [isLargerThan768] = useMediaQuery("(min-width: 840px)");
 	const [isDrawerOpen, setDrawerOpen] = useState(false);
 	const LinkContainerStyles = {
@@ -22,11 +27,12 @@ export default function NavBar() {
 		paddingBottom: "10px", // Adjust the value to control the space between the Link text and the underline
 	};
 	const selectedPageLinkStyles = {
-		borderBottom: "1px solid #1EF828",
-		lineHeight: "48px",
-		borderRadius: "0px",
+		color: "#fff",
+		backgroundImage: "linear-gradient(to right, #1EF828, #1EF828)",
+		backgroundSize: "100% 2px",
+		backgroundRepeat: "no-repeat",
+		backgroundPosition: "0 100%",
 	};
-
 	const LinkStyles = {
 		background: "none",
 		color: "#fff",
@@ -42,7 +48,7 @@ export default function NavBar() {
 		setDrawerOpen(!isDrawerOpen);
 	};
 
-	const handleNavItemClick = (page: string) => {
+	const handleNavItemClick = () => {
 		setDrawerOpen(false); // Close the drawer on mobile when a link is clicked
 	};
 
@@ -62,51 +68,31 @@ export default function NavBar() {
 				<>
 					<Link
 						href="/home"
-						// style={
-						// 	currentPage === "home"
-						// 		? { ...LinkStyles, ...selectedPageLinkStyles }
-						// 		: LinkStyles
-						// }
+						style={page === "home" ? selectedPageLinkStyles : {}}
 					>
 						home
 					</Link>
 					<Link
 						href="/about"
-						// style={
-						// 	currentPage === "about"
-						// 		? { ...LinkStyles, ...selectedPageLinkStyles }
-						// 		: LinkStyles
-						// }
+						style={page === "about" ? selectedPageLinkStyles : {}}
 					>
 						about
 					</Link>
 					<Link
 						href="/skills"
-						// style={
-						// 	currentPage === "skills"
-						// 		? { ...LinkStyles, ...selectedPageLinkStyles }
-						// 		: LinkStyles
-						// }
+						style={page === "skills" ? selectedPageLinkStyles : {}}
 					>
 						skills
 					</Link>
 					<Link
 						href="/projects"
-						// style={
-						// 	currentPage === "projects"
-						// 		? { ...LinkStyles, ...selectedPageLinkStyles }
-						// 		: LinkStyles
-						// }
+						style={page === "projects" ? selectedPageLinkStyles : {}}
 					>
 						my projects
 					</Link>
 					<Link
 						href="/contact"
-						// style={
-						// 	currentPage === "contact"
-						// 		? { ...LinkStyles, ...selectedPageLinkStyles }
-						// 		: LinkStyles
-						// }
+						style={page === "contact" ? selectedPageLinkStyles : {}}
 					>
 						contact
 					</Link>
@@ -132,51 +118,36 @@ export default function NavBar() {
 							<Stack spacing="8px">
 								<Link
 									href="/home"
-									// style={
-									// 	currentPage === "home"
-									// 		? { ...LinkStyles, ...selectedPageLinkStyles }
-									// 		: LinkStyles
-									// }
+									style={page === "home" ? selectedPageLinkStyles : {}}
+									onClick={() => handleNavItemClick()}
 								>
 									home
 								</Link>
 								<Link
 									href="/about"
-									// style={
-									// 	currentPage === "about"
-									// 		? { ...LinkStyles, ...selectedPageLinkStyles }
-									// 		: LinkStyles
-									// }
+									style={page === "about" ? selectedPageLinkStyles : {}}
+									onClick={() => handleNavItemClick()}
 								>
 									about
 								</Link>
 								<Link
 									href="/skills"
-									// style={
-									// 	currentPage === "skills"
-									// 		? { ...LinkStyles, ...selectedPageLinkStyles }
-									// 		: LinkStyles
-									// }
+									style={page === "skills" ? selectedPageLinkStyles : {}}
+									onClick={() => handleNavItemClick()}
 								>
 									skills
 								</Link>
 								<Link
 									href="/projects"
-									// style={
-									// 	currentPage === "projects"
-									// 		? { ...LinkStyles, ...selectedPageLinkStyles }
-									// 		: LinkStyles
-									// }
+									style={page === "projects" ? selectedPageLinkStyles : {}}
+									onClick={() => handleNavItemClick()}
 								>
 									my projects
 								</Link>
 								<Link
 									href="/contact"
-									// style={
-									// 	currentPage === "contact"
-									// 		? { ...LinkStyles, ...selectedPageLinkStyles }
-									// 		: LinkStyles
-									// }
+									style={page === "contact" ? selectedPageLinkStyles : {}}
+									onClick={() => handleNavItemClick()}
 								>
 									contact
 								</Link>

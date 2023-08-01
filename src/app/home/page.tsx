@@ -57,7 +57,7 @@ export default function Page() {
 							color="#C1CED9"
 							fontSize={["24px", "48px", "48px", "64px"]}
 							fontWeight="bold"
-							letterSpacing="8px"
+							letterSpacing="4px"
 							mb="16px"
 						>
 							Khalil.
