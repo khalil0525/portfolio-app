@@ -1,6 +1,6 @@
 import React from "react";
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
-
+import { Box, Flex, Text } from "@chakra-ui/react";
+import Image from "next/image";
 interface Skill {
 	id: number;
 	name: string;
@@ -100,7 +100,12 @@ const Skills: React.FC = () => {
 						justifyContent="center"
 						alignItems="center"
 					>
-						<Image src={skill.imageUrl} alt={skill.name} maxW="100%" h="100%" />
+						<Image
+							src={skill.imageUrl}
+							alt={skill.name}
+							width={120}
+							height={120}
+						/>
 					</Box>
 				))}
 			</Flex>
