@@ -79,7 +79,8 @@ export default function Page() {
 							<animated.div
 								style={{
 									...imageAnimation,
-
+									display: "flex",
+									justifyContent: "center",
 									width: "100%",
 									height: "100%",
 								}}
