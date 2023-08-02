@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Image, Box, Text, Flex } from "@chakra-ui/react";
+import { Box, Text, Flex } from "@chakra-ui/react";
 import { ThreeCircles } from "react-loader-spinner";
 import { useSpring, animated, config } from "react-spring";
-
+import Image from "next/image";
 export default function Page() {
 	const [isPageLoaded, setIsPageLoaded] = useState(false);
 
@@ -87,7 +87,8 @@ export default function Page() {
 								<Image
 									src="/img/logo/green-logo-min.png"
 									alt="Logo"
-									style={{ width: "100%", height: "100%" }}
+									width={800}
+									height={800}
 								/>
 							</animated.div>
 						</Box>
