@@ -89,6 +89,7 @@ export default function Page() {
 									alt="Logo"
 									width={800}
 									height={800}
+									loading="eager"
 								/>
 							</animated.div>
 						</Box>
