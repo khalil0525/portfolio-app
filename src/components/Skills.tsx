@@ -80,7 +80,6 @@ const skillsData: Skill[] = [
     name: 'Express',
     imageUrl: '/img/logo/expresslogo.png',
   },
-  // Add more skills as needed
 ];
 
 const Skills: React.FC = () => {
@@ -109,8 +108,7 @@ const Skills: React.FC = () => {
               justifyContent="center"
               alignItems="center"
               transition="transform 0.3s ease-in-out"
-              _hover={{ transform: 'scale(1.2)' }} // Increase zoom on hover
-            >
+              _hover={{ transform: 'scale(1.2)' }}>
               <Image
                 src={skill.imageUrl}
                 alt={skill.name}

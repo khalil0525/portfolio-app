@@ -9,37 +9,32 @@ export default function Page() {
   const [isPageLoaded, setIsPageLoaded] = useState(false);
 
   useEffect(() => {
-    // Simulate page loading with a delay (you can remove this in production)
     const loadingTimer = setTimeout(() => {
       setIsPageLoaded(true);
-    }, 500); // Adjust the time as needed
+    }, 500);
 
-    // Clear the timer when the component unmounts
     return () => clearTimeout(loadingTimer);
   }, []);
 
-  // Define the animation config for the text
   const textAnimation = useSpring({
     opacity: isPageLoaded ? 1 : 0,
     transform: isPageLoaded ? 'translateY(0)' : 'translateY(20px)',
     config: {
-      tension: 5000, // Adjust the animation tension
-      friction: 500, // Adjust the animation friction
+      tension: 5000,
+      friction: 500,
     },
   });
 
-  // Define the animation config for the image
   const imageAnimation = useSpring({
     opacity: isPageLoaded ? 1 : 0,
     transform: isPageLoaded ? 'translateY(0)' : 'translateY(20px)',
-    config: config.gentle, // Use a gentle animation
-    delay: 50, // Delay the animation to start after text animation
+    config: config.gentle,
+    delay: 50,
   });
 
   return (
     <>
       {!isPageLoaded ? (
-        // Show the loader until the page is loaded
         <Box
           w="100%"
           h="100vh"
@@ -94,7 +89,7 @@ export default function Page() {
             w="100%"
             justify={['unset', 'unset', 'unset', 'space-evenly']}>
             <Box
-              position="relative" // Add this line to create a relative container for the image
+              position="relative"
               w="100%"
               h={['40vh', '40vh', '40vh', '100%']}
               mb={['12px', '12px', 0]}

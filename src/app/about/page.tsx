@@ -9,19 +9,17 @@ export default function Page() {
   const [isPageLoaded, setIsPageLoaded] = useState(false);
 
   useEffect(() => {
-    // Simulate page loading with a delay (you can remove this in production)
     const loadingTimer = setTimeout(() => {
       setIsPageLoaded(true);
-    }, 500); // Adjust the time as needed
+    }, 500);
 
-    // Clear the timer when the component unmounts
     return () => clearTimeout(loadingTimer);
   }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsTextVisible(true);
-    }, 1000); // 3000 milliseconds delay (3 seconds)
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -29,7 +27,6 @@ export default function Page() {
   return (
     <>
       {!isPageLoaded ? (
-        // Show the loader until the page is loaded
         <Box
           w="100%"
           h="100vh"
@@ -59,7 +56,7 @@ export default function Page() {
               <Image
                 src="/img/logo/green-logo-min.png"
                 w="100%"
-                h={['100%', '100%', '100%']}
+                h={['100%', '90%', '80%']}
                 alt="khalil collins logo"
               />
             </Flex>
@@ -68,8 +65,8 @@ export default function Page() {
               spacing={6}
               fontSize="22px"
               fontWeight="300"
-              maxW={['100%', '100%', '100%', '35%']}
-              w={['100%', '100%', '100%', '35%']}
+              maxW={['100%', '100%', '100%', '40%']}
+              w={['100%', '100%', '100%']}
               justifySelf="end"
               overflowY={['auto', 'auto', 'auto', 'auto']}
               h={['25vh', '30vh', '30vh', '50%']}
@@ -78,8 +75,7 @@ export default function Page() {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: isTextVisible ? 1 : 0 }}
-                transition={{ duration: 2.5 }} // Adjust the duration for the desired fade-in time
-              >
+                transition={{ duration: 2.5 }}>
                 <Text>
                   Hey there, I&apos;m Khalil Collins, and I&apos;m thrilled to
                   have you explore my journey in the world of technology and web

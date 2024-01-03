@@ -24,7 +24,7 @@ export default function NavBar() {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const LinkContainerStyles = {
     display: 'inline-block',
-    paddingBottom: '10px', // Adjust the value to control the space between the Link text and the underline
+    paddingBottom: '10px',
   };
   const selectedPageLinkStyles = {
     color: '#fff',
@@ -49,7 +49,7 @@ export default function NavBar() {
   };
 
   const handleNavItemClick = () => {
-    setDrawerOpen(false); // Close the drawer on mobile when a link is clicked
+    setDrawerOpen(false);
   };
 
   return (
@@ -59,10 +59,9 @@ export default function NavBar() {
       gap={['6px', '6px', '36px', '36px']}
       justify="space-between"
       alignSelf="middle"
-      position={isLargerThan768 ? 'static' : 'sticky'} // Set position to sticky on mobile
-      top={0} // Stick to the top of the viewport on mobile
-      zIndex={999} // Set a higher z-index to ensure it's above other elements
-    >
+      position={isLargerThan768 ? 'static' : 'sticky'}
+      top={0}
+      zIndex={999}>
       {/* Regular Navigation Links */}
       {isLargerThan768 ? (
         <>

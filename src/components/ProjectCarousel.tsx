@@ -17,12 +17,12 @@ import {
 } from '@chakra-ui/react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import Link from 'next/link';
-
+import CarouselModal from './CarouselModal';
 interface Project {
   id: number;
   name: string;
   description: string;
-  imageUrl: string; // Add the imageUrl property for project photo
+  imageUrl: string;
   hashTags: string[];
   githubUrl: string | null;
   appUrl: string | null;
@@ -121,7 +121,6 @@ const projectsData: Project[] = [
     githubUrl: null,
     appUrl: 'https://joonhaircare.com/',
   },
-  // Add more projects as needed
 ];
 
 const ProjectCarousel: React.FC = () => {
@@ -131,13 +130,13 @@ const ProjectCarousel: React.FC = () => {
   const numProjectsToShowDesktop = 3;
   const numProjectsToShowTablet = 1;
   const totalProjects = projectsData.length;
-  const isMobile = useBreakpointValue({ base: true, md: false }); // Check if it's mobile screen size
+  const isMobile = useBreakpointValue({ base: true, md: false });
   const numProjectsToShow = isMobile
     ? numProjectsToShowTablet
     : numProjectsToShowDesktop;
   const projectCardWidth = isMobile
-    ? '100%' // Full width for mobile
-    : `${100 / numProjectsToShowDesktop}%`; // Divide the width equally for desktop
+    ? '100%'
+    : `${100 / numProjectsToShowDesktop}%`;
 
   const handleOpenModal = (project: Project) => {
     setSelectedProject(project);
@@ -157,50 +156,24 @@ const ProjectCarousel: React.FC = () => {
     return chunkedHashtags;
   };
 
-  // Helper function to render hashtags based on screen size
-  const renderHashtags = (hashtags: string[]) => {
-    if (window.innerWidth >= 768) {
-      // On desktop, render three hashtags per row
-      const chunkedHashtags = chunkHashtags(hashtags, 1);
-      return chunkedHashtags.map((hashtagGroup, index) => (
-        <Flex
-          direction="column"
-          key={index}
-          align="start"
-          justify="start"
-          w="100%">
-          {hashtagGroup.map((hashtag) => (
-            <Text
-              key={hashtag}
-              fontSize="16px"
-              fontWeight="300">
-              #{hashtag}
-            </Text>
-          ))}
-        </Flex>
-      ));
-    } else {
-      // On mobile, render two hashtags per row
-      const chunkedHashtags = chunkHashtags(hashtags, 3);
-      return chunkedHashtags.map((hashtagGroup, index) => (
-        <Flex
-          direction="row"
-          gap={2}
-          key={index}
-          align="center"
-          justify="center"
-          w="100%">
-          {hashtagGroup.map((hashtag) => (
-            <Text
-              key={hashtag}
-              fontSize="16px"
-              fontWeight="300">
-              #{hashtag}
-            </Text>
-          ))}
-        </Flex>
-      ));
-    }
+  const renderHashtags = (hashtags: string[], isModal = false) => {
+    return (
+      <Flex
+        direction={isModal ? 'row' : 'column'}
+        gap={2}
+        sx={{ scrollbarWidth: 'thin', scrollbarColor: '#63b3ed transparent' }}
+        wrap={'nowrap'}
+        maxH={isModal ? 'auto' : '80px'}>
+        {hashtags.map((hashtag) => (
+          <Text
+            key={hashtag}
+            fontSize="16px"
+            fontWeight="300">
+            #{hashtag}
+          </Text>
+        ))}
+      </Flex>
+    );
   };
 
   return (
@@ -229,7 +202,7 @@ const ProjectCarousel: React.FC = () => {
               flexDirection="column"
               alignItems="center"
               cursor="pointer"
-              onClick={() => handleOpenModal(project)} // Add this onClick event
+              onClick={() => handleOpenModal(project)}
               h="70%"
               w="100%">
               <Text
@@ -245,7 +218,7 @@ const ProjectCarousel: React.FC = () => {
                 <Image
                   src={project.imageUrl}
                   alt={project.name}
-                  objectFit="fill" // Adjust the object-fit property based on your image's aspect ratio
+                  objectFit="fill"
                   borderRadius="300px"
                 />
               </div>
@@ -264,114 +237,11 @@ const ProjectCarousel: React.FC = () => {
         </Flex>
       </Box>
       {selectedProject && (
-        <Modal
+        <CarouselModal
           isOpen={isModalOpen}
           onClose={handleCloseModal}
-          size="xl">
-          <ModalOverlay />
-          <ModalContent
-            bgColor="#fff" // Set the background color to mimic a coding window
-            color="#000" // Set the text color to white for better readability
-            maxW={['100%', '60%', '60%', '60%']}
-            maxH={['100%', '60%', '60%', '70%']}
-            overflowY="auto">
-            <ModalHeader>
-              <Text
-                fontSize="32px"
-                fontWeight="bold"
-                color="#000">
-                {selectedProject.name}
-              </Text>
-            </ModalHeader>
-            <ModalCloseButton color="#fff" /> {/* Set the close button color */}
-            <ModalBody w="100%">
-              <Flex
-                direction="column"
-                w="100%"
-                align="center"
-                justify="center">
-                <Image
-                  src={selectedProject.imageUrl}
-                  alt={selectedProject.name}
-                  h="100%"
-                  w="60%"
-                  mt={4}
-                  mb={8}
-                />
-                <Flex
-                  direction="row"
-                  w="100%"
-                  justify="center"
-                  gap={10}>
-                  <Flex
-                    direction="row"
-                    gap="4px">
-                    <Image
-                      src="img/logo/github-mark.png"
-                      w="24px"
-                      h="24px"
-                    />
-                    {selectedProject.githubUrl === 'Private' ||
-                    selectedProject.githubUrl === null ? (
-                      <Text>Private</Text>
-                    ) : (
-                      <Link href={selectedProject.githubUrl as string}>
-                        Github
-                      </Link>
-                    )}
-                  </Flex>
-                  <Flex
-                    direction="row"
-                    gap="4px">
-                    <Image
-                      src="img/logo/www.png"
-                      w="24px"
-                      h="24px"
-                    />
-                    {selectedProject.appUrl === 'Private' ? (
-                      <Text>Private</Text>
-                    ) : (
-                      <Link href={selectedProject.appUrl as string}>App</Link>
-                    )}
-                  </Flex>
-                </Flex>
-                <Stack
-                  spacing={6}
-                  fontSize="22px"
-                  fontWeight="300"
-                  maxW={['100%', '100%', '100%', '100%']}
-                  w={['100%', '100%', '100%', '100%']}
-                  justifySelf="end"
-                  overflowY={['auto', 'auto', 'auto', 'auto']}
-                  h={['25vh', '30vh', '30vh', '50%']}
-                  className="custom-scrollbar vertical"
-                  padding="36px">
-                  {selectedProject.description
-                    .split('\n')
-                    .map((line, index) => (
-                      <Text
-                        fontSize="14px"
-                        fontWeight="400"
-                        color="#000"
-                        key={index + line}>
-                        {line}
-                      </Text>
-                    ))}
-                </Stack>
-                {/* Add other project details here */}
-              </Flex>
-            </ModalBody>
-            <ModalFooter>
-              <Flex
-                direction="column"
-                gap={2}
-                align="center"
-                justify="center">
-                {renderHashtags(selectedProject.hashTags)}
-              </Flex>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
+          project={selectedProject}
+        />
       )}
     </>
   );
