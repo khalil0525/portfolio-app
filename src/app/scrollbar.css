@@ -6,57 +6,57 @@
 
 /* Horizontal Scrollbar */
 .custom-scrollbar.horizontal {
-	scrollbar-width: thin; /* "thin" for a thin scrollbar, "auto" for the default scrollbar width */
-	scrollbar-color: #1cff25 #c1ced9; /* The scrollbar colors */
-	overflow-x: auto; /* Enable horizontal scroll */
+  scrollbar-width: thin; /* "thin" for a thin scrollbar, "auto" for the default scrollbar width */
+  scrollbar-color: #1cff25 #c1ced9; /* The scrollbar colors */
+  overflow-x: auto; /* Enable horizontal scroll */
 }
 
 /* Define the scrollbar track (background) and thumb (handle) styles */
 .custom-scrollbar.horizontal::-webkit-scrollbar {
-	height: 8px; /* Height of the scrollbar */
+  height: 8px; /* Height of the scrollbar */
 }
 
 .custom-scrollbar.horizontal::-webkit-scrollbar-track {
-	background: #c1ced9; /* Color of the scrollbar track (background) */
-	border-radius: 4px;
+  background: #c1ced9; /* Color of the scrollbar track (background) */
+  border-radius: 4px;
 }
 
 .custom-scrollbar.horizontal::-webkit-scrollbar-thumb {
-	background-color: #1cff25; /* Color of the scrollbar thumb (handle) */
-	border-radius: 4px; /* Rounded corners for the scrollbar thumb */
+  background-color: #1cff25; /* Color of the scrollbar thumb (handle) */
+  border-radius: 4px; /* Rounded corners for the scrollbar thumb */
 }
 
 /* Vertical Scrollbar */
 .custom-scrollbar.vertical {
-	scrollbar-width: thin; /* "thin" for a thin scrollbar, "auto" for the default scrollbar width */
-	scrollbar-color: #1cff25 #c1ced9; /* The scrollbar colors */
-	overflow-y: auto; /* Enable vertical scroll */
+  scrollbar-width: thin; /* "thin" for a thin scrollbar, "auto" for the default scrollbar width */
+  scrollbar-color: #1cff25 #c1ced9; /* The scrollbar colors */
+  overflow-y: auto; /* Enable vertical scroll */
 }
 
 /* Define the scrollbar track (background) and thumb (handle) styles */
 .custom-scrollbar.vertical::-webkit-scrollbar {
-	width: 8px; /* Width of the scrollbar */
+  width: 8px; /* Width of the scrollbar */
 }
 
 .custom-scrollbar.vertical::-webkit-scrollbar-track {
-	background: #c1ced9; /* Color of the scrollbar track (background) */
-	border-radius: 4px;
+  background: #c1ced9; /* Color of the scrollbar track (background) */
+  border-radius: 4px;
 }
 
 .custom-scrollbar.vertical::-webkit-scrollbar-thumb {
-	background-color: #1cff25; /* Color of the scrollbar thumb (handle) */
-	border-radius: 4px; /* Rounded corners for the scrollbar thumb */
+  background-color: #1cff25; /* Color of the scrollbar thumb (handle) */
+  border-radius: 4px; /* Rounded corners for the scrollbar thumb */
 }
 
 /* On desktop, set a fixed height for the text stack */
 @media screen and (min-width: 1024px) {
-	.custom-scrollbar.vertical {
-		height: calc(
-			60vh - 72px
-		); /* Subtracting the header height from the viewport height */
-	}
+  .custom-scrollbar.vertical {
+    height: calc(
+      70vh - 72px
+    ); /* Subtracting the header height from the viewport height */
+  }
 
-	.custom-scrollbar.horizontal {
-		height: 100%; /* Subtracting the header height from the viewport height */
-	}
+  .custom-scrollbar.horizontal {
+    height: 100%; /* Subtracting the header height from the viewport height */
+  }
 }

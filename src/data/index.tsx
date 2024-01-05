@@ -34,7 +34,7 @@ export const projectsData: Project[] = [
       'JAVASCRIPT',
       'CHAKRA UI',
     ],
-    githubUrl: 'https://github.com/khalil0525/bus-routing-portal',
+    githubUrl: 'https://github.com/khalil0525/shuttle-admin-app',
     appUrl: 'https://bus-routing-portal-prod-18d532a8f2ff.herokuapp.com/',
   },
   {

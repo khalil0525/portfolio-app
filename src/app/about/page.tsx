@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Image, Text, Stack, Flex, Box } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { ThreeCircles } from 'react-loader-spinner';
+import FiverrBadge from '@/components/FiverrBadge';
 export default function Page() {
   const [isTextVisible, setIsTextVisible] = useState(false);
   const [isPageLoaded, setIsPageLoaded] = useState(false);
@@ -44,23 +45,23 @@ export default function Page() {
           <Flex
             direction={['column', 'column', 'column', 'row']}
             w="100%"
+            height="100vh"
             justify={['unset', 'unset', 'unset', 'space-evenly']}
-            overflowY={['unset', 'unset', 'unset', 'hidden']}>
+            align="start">
             <Flex
               direction="column"
               p="8px"
               w={['100%', '100%', '100%', '55%']}
-              h={['40vh', '40vh', '40vh', '80%']}
+              h="100%"
               mb={['12px', '12px', 0]}
               flexShrink={1}>
               <Image
                 src="/img/logo/green-logo-min.png"
                 w="100%"
-                h={['100%', '90%', '80%']}
+                h={['100%', '90%', '100%']}
                 alt="khalil collins logo"
               />
             </Flex>
-
             <Stack
               spacing={6}
               fontSize="22px"
@@ -69,7 +70,7 @@ export default function Page() {
               w={['100%', '100%', '100%']}
               justifySelf="end"
               overflowY={['auto', 'auto', 'auto', 'auto']}
-              h={['25vh', '30vh', '30vh', '50%']}
+              h="100vh"
               className="custom-scrollbar vertical"
               padding="36px">
               <motion.div
@@ -115,6 +116,21 @@ export default function Page() {
                 </Text>
               </motion.div>
             </Stack>
+          </Flex>
+          <Flex
+            mt={8}
+            direction="column"
+            w={['100%', '100%', '100%', '100%']}
+            alignItems="center"
+            justifyContent="center"
+            height="100vh">
+            <Text
+              fontSize="lg"
+              mb="20px"
+              textAlign="center">
+              Check out my professional services on Fiverr:
+            </Text>
+            <FiverrBadge />
           </Flex>
         </>
       )}
