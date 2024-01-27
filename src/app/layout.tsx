@@ -1,15 +1,15 @@
-'use client';
-import './globals.css';
-import type { Metadata } from 'next';
-import { Source_Code_Pro } from 'next/font/google';
-import { CacheProvider } from '@chakra-ui/next-js';
-import { Box, ChakraProvider, Flex, Text } from '@chakra-ui/react';
-import './scrollbar.css';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import NavBar from '@/components/NavBar';
-import { useState } from 'react';
-import { usePathname } from 'next/navigation';
-const sourceCodePro = Source_Code_Pro({ subsets: ['latin'] });
+"use client";
+import "./globals.css";
+import type { Metadata } from "next";
+import { Source_Code_Pro } from "next/font/google";
+import { CacheProvider } from "@chakra-ui/next-js";
+import { Box, ChakraProvider, Flex, Text } from "@chakra-ui/react";
+import "./scrollbar.css";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import NavBar from "@/components/NavBar";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
+const sourceCodePro = Source_Code_Pro({ subsets: ["latin"] });
 
 // export const metadata: Metadata = {
 // 	title: "Khalil Collins",
@@ -19,11 +19,11 @@ interface PageHeaders {
   [key: string]: [string, string];
 }
 const pageHeaders: PageHeaders = {
-  home: ['Khalil', 'Collins'],
-  about: ['about', 'me'],
-  skills: ['my', 'skills'],
-  projects: ['my', 'projects'],
-  contact: ['contact', 'me'],
+  home: ["Khalil", "Collins"],
+  about: ["about", "me"],
+  skills: ["my", "skills"],
+  projects: ["my", "projects"],
+  contact: ["contact", "me"],
 };
 export default function RootLayout({
   children,
@@ -32,7 +32,7 @@ export default function RootLayout({
 }) {
   const pathName = usePathname();
   console.log(pathName);
-  const isStartPage = pathName === '/';
+  const isStartPage = pathName === "/";
   let page = pathName.slice(1);
 
   return (
@@ -49,53 +49,53 @@ export default function RootLayout({
                   align="center"
                   justify="flex-start"
                   style={{
-                    objectFit: 'contain',
-                    gap: '20px',
+                    objectFit: "contain",
+                    gap: "20px",
                   }}
                   bgColor="#000">
                   {!isStartPage && <NavBar />}
                   <TransitionGroup
                     component={null}
                     style={{
-                      position: 'absolute',
-                      width: '100%',
-                      height: '100%',
+                      position: "absolute",
+                      width: "100%",
+                      height: "100%",
                     }}>
                     <CSSTransition
                       classNames="page"
                       timeout={{ enter: 300, exit: 300 }}
                       style={{
-                        width: '100%',
-                        height: '100%',
+                        width: "100%",
+                        height: "100%",
                       }}>
                       <Flex
                         direction="column"
-                        overflowY={['auto', 'auto', 'auto', 'auto']}
+                        overflowY={["auto", "auto", "auto", "auto"]}
                         w="100%"
                         h="100%"
                         p={[
-                          '12px',
-                          '12px',
-                          '0px 36px',
-                          '6px 36px',
-                          '6px 124px',
+                          "12px",
+                          "12px",
+                          "0px 36px",
+                          "6px 36px",
+                          "6px 124px",
                         ]}
                         align={
-                          pathName === '/home'
-                            ? ['center', 'center', 'center', 'center']
-                            : ['center', 'center', 'center', 'flex-start']
+                          pathName === "/home"
+                            ? ["center", "center", "center", "center"]
+                            : ["center", "center", "center", "flex-start"]
                         }>
-                        {!isStartPage && page !== 'home' && (
+                        {!isStartPage && page !== "home" && (
                           <Text
                             as="h1"
                             size="3xl"
                             color="#C1CED9"
-                            fontSize={['24px', '24px', '32px', '48px', '64px']}
+                            fontSize={["24px", "24px", "32px", "48px", "64px"]}
                             fontWeight="bold"
                             letterSpacing="-4px"
                             mb="16px">
                             {pageHeaders[page][0]}.
-                            <span style={{ color: '#1CFF25' }}>
+                            <span style={{ color: "#1CFF25" }}>
                               {pageHeaders[page][1]}()
                             </span>
                           </Text>
