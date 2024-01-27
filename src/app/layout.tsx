@@ -73,34 +73,68 @@ export default function RootLayout({
                         overflowY={["auto", "auto", "auto", "auto"]}
                         w="100%"
                         h="100%"
-                        p={[
-                          "12px",
-                          "12px",
-                          "0px 36px",
-                          "6px 36px",
-                          "6px 124px",
-                        ]}
                         align={
                           pathName === "/home"
                             ? ["center", "center", "center", "center"]
                             : ["center", "center", "center", "flex-start"]
                         }>
                         {!isStartPage && page !== "home" && (
-                          <Text
-                            as="h1"
-                            size="3xl"
-                            color="#C1CED9"
-                            fontSize={["24px", "24px", "32px", "48px", "64px"]}
-                            fontWeight="bold"
-                            letterSpacing="-4px"
-                            mb="16px">
-                            {pageHeaders[page][0]}.
-                            <span style={{ color: "#1CFF25" }}>
-                              {pageHeaders[page][1]}()
-                            </span>
-                          </Text>
+                          <Flex
+                            direction="column"
+                            w="100%"
+                            p={[
+                              "12px",
+                              "12px",
+                              "0px 36px",
+                              "6px 36px",
+                              "6px 124px",
+                            ]}
+                            align={
+                              pathName === "/home"
+                                ? ["center", "center", "center", "center"]
+                                : ["center", "center", "center", "flex-start"]
+                            }>
+                            {" "}
+                            <Text
+                              as="h1"
+                              size="3xl"
+                              color="#C1CED9"
+                              fontSize={[
+                                "24px",
+                                "24px",
+                                "32px",
+                                "48px",
+                                "64px",
+                              ]}
+                              fontWeight="bold"
+                              letterSpacing="-4px"
+                              mb="16px">
+                              {pageHeaders[page][0]}.
+                              <span style={{ color: "#1CFF25" }}>
+                                {pageHeaders[page][1]}()
+                              </span>
+                            </Text>
+                          </Flex>
                         )}
-                        {children}
+                        <Flex
+                          direction="column"
+                          overflowY={["auto", "auto", "auto", "auto"]}
+                          w="100%"
+                          h="100%"
+                          p={[
+                            "12px",
+                            "12px",
+                            "0px 36px",
+                            "6px 36px",
+                            "6px 16px",
+                          ]}
+                          align={
+                            pathName === "/home"
+                              ? ["center", "center", "center", "center"]
+                              : ["center", "center", "center", "flex-start"]
+                          }>
+                          {children}
+                        </Flex>
                       </Flex>
                     </CSSTransition>
                   </TransitionGroup>

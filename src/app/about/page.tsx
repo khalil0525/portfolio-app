@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import { Image, Text, Stack, Flex, Box } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
-import { ThreeCircles } from 'react-loader-spinner';
-import FiverrBadge from '@/components/FiverrBadge';
+import React, { useEffect, useState } from "react";
+import { Image, Text, Stack, Flex, Box, VStack } from "@chakra-ui/react";
+import { motion } from "framer-motion";
+import { ThreeCircles } from "react-loader-spinner";
+import FiverrBadge from "@/components/FiverrBadge";
 export default function Page() {
   const [isTextVisible, setIsTextVisible] = useState(false);
   const [isPageLoaded, setIsPageLoaded] = useState(false);
@@ -41,24 +41,31 @@ export default function Page() {
           />
         </Box>
       ) : (
-        <>
+        <VStack
+          className="container"
+          alignItems="center"
+          width={["100%"]}
+          minH="200vh"
+          overflowX="hidden"
+          overflowY="auto"
+          p={4}>
           <Flex
-            direction={['column', 'column', 'column', 'row']}
+            direction={["column", "column", "column", "row"]}
             w="100%"
             height="100vh"
-            justify={['unset', 'unset', 'unset', 'space-evenly']}
+            justify={["unset", "unset", "unset", "space-evenly"]}
             align="start">
             <Flex
               direction="column"
               p="8px"
-              w={['100%', '100%', '100%', '55%']}
+              w={["100%", "100%", "100%", "55%"]}
               h="100%"
-              mb={['12px', '12px', 0]}
+              mb={["12px", "12px", 0]}
               flexShrink={1}>
               <Image
                 src="/img/logo/green-logo-min.png"
                 w="100%"
-                h={['100%', '90%', '100%']}
+                h={["100%", "80%", "80%"]}
                 alt="khalil collins logo"
               />
             </Flex>
@@ -66,10 +73,10 @@ export default function Page() {
               spacing={6}
               fontSize="22px"
               fontWeight="300"
-              maxW={['100%', '100%', '100%', '40%']}
-              w={['100%', '100%', '100%']}
+              maxW={["100%", "100%", "100%", "40%"]}
+              w={["100%", "100%", "100%"]}
               justifySelf="end"
-              overflowY={['auto', 'auto', 'auto', 'auto']}
+              overflowY={["auto", "auto", "auto", "auto"]}
               h="100vh"
               className="custom-scrollbar vertical"
               padding="36px">
@@ -80,7 +87,7 @@ export default function Page() {
                 <Text>
                   Hey there, I&apos;m Khalil Collins, and I&apos;m thrilled to
                   have you explore my journey in the world of technology and web
-                  development. 🌐🎮{' '}
+                  development. 🌐🎮{" "}
                 </Text>
                 <Text>
                   I&apos;ve been immersed in the IT realm for several years,
@@ -118,12 +125,13 @@ export default function Page() {
             </Stack>
           </Flex>
           <Flex
-            mt={8}
+            mt={4}
             direction="column"
-            w={['100%', '100%', '100%', '100%']}
+            w={["100%", "100%", "100%", "100%"]}
             alignItems="center"
             justifyContent="center"
-            height="100vh">
+            h="auto"
+            p={4}>
             <Text
               fontSize="lg"
               mb="20px"
@@ -132,7 +140,7 @@ export default function Page() {
             </Text>
             <FiverrBadge />
           </Flex>
-        </>
+        </VStack>
       )}
     </>
   );

@@ -1,6 +1,6 @@
-import React from 'react';
-import { Box, Text, Image, Link, VStack, HStack } from '@chakra-ui/react';
-import { Project } from '@/data';
+import React from "react";
+import { Box, Text, Image, Link, VStack, HStack } from "@chakra-ui/react";
+import { Project } from "@/data";
 
 interface FeaturedProjectProps {
   project: Project;
@@ -20,25 +20,25 @@ export const FeaturedProject: React.FC<FeaturedProjectProps> = ({
       maxH="100%"
       maxW="100%"
       display="flex"
-      flexDirection={['column', 'column', 'column', 'row']}
-      alignItems={['center', 'center', 'center', 'stretch']}>
+      flexDirection={["column", "column", "column", "row"]}
+      alignItems={["center", "center", "center", "stretch"]}>
       <Box
-        flex={['none', 'none', 'none', '100%']}
+        flex={["none", "none", "none", "100%"]}
         pr={[0, 0, 0, 4]}
         mb={[4, 4, 4, 0]}
         maxH="100%"
         maxW="100%">
         <Image
-          src={project.imageUrl}
+          src={project.imageUrl[0]}
           alt={project.name}
-          maxH={['100%']}
+          maxH={["100%"]}
           maxW="100%"
         />
 
         <Box>
           <HStack
             mt={2}
-            align={['center', 'center', 'center', 'start']}
+            align={["center", "center", "center", "start"]}
             flexWrap="wrap">
             {project.hashTags.map((tag) => (
               <Text
@@ -54,7 +54,7 @@ export const FeaturedProject: React.FC<FeaturedProjectProps> = ({
         <HStack
           flexWrap="wrap"
           mt={2}
-          align={['center', 'center', 'center', 'start']}>
+          align={["center", "center", "center", "start"]}>
           {project.githubUrl && (
             <Link
               href={project.githubUrl}
@@ -77,7 +77,7 @@ export const FeaturedProject: React.FC<FeaturedProjectProps> = ({
         </HStack>
       </Box>
       <Box
-        w={['100%', '100%', '100%', '60%']}
+        w={["100%", "100%", "100%", "60%"]}
         p={4}>
         <Text
           fontSize="lg"

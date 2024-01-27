@@ -1,7 +1,7 @@
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
-  --font-mono: 'Source Code Pro', monospace;
+  --font-mono: "Source Code Pro", monospace;
 
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -170,7 +170,7 @@ a {
   justify-content: center;
 }
 .image-container::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -178,7 +178,6 @@ a {
   background-color: #1dfa27; /* Desired haze color */
   opacity: 0.5; /* Adjust the opacity as desired */
   transition: opacity 0.3s ease; /* Smooth transition for when the overlay is hidden */
-  border-radius: 300px;
 }
 @media screen and (max-width: 767px) {
   .image-container {
